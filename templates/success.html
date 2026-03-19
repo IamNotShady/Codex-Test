@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="result-page">
+  <div class="result-card">
+    <div class="result-icon" aria-hidden="true">✓</div>
+    <h1>登录成功</h1>
+    <p>欢迎回来，{{ email }}。</p>
+    <a class="result-link" href="{{ url_for('login') }}">返回登录页</a>
+  </div>
+</section>
+{% endblock %}
