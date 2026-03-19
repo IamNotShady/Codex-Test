@@ -6,15 +6,25 @@
     <div class="login-icon" aria-hidden="true">✧</div>
     <h1>Sign in to xxxx</h1>
 
-    <form class="login-form" action="#" method="post">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages" aria-live="polite">
+          {% for category, message in messages %}
+            <div class="flash-message flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form class="login-form" action="{{ url_for('login') }}" method="post">
       <label class="sr-only" for="email">Email</label>
-      <input id="email" name="email" type="email" placeholder="Email">
+      <input id="email" name="email" type="email" placeholder="Email" value="{{ request.form.get('email', '') }}" required>
 
       <div class="password-row">
         <label class="sr-only" for="password">Password</label>
         <a href="#">Forgot password?</a>
       </div>
-      <input id="password" name="password" type="password" placeholder="Password">
+      <input id="password" name="password" type="password" placeholder="Password" required>
 
       <button type="submit">Sign in</button>
     </form>
